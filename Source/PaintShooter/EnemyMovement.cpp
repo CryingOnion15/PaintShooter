@@ -13,6 +13,15 @@ enum Direction {
 
 Direction dir;
 AActor* player;
+FVector* north = new FVector(1.f, 0.f, 0.f);
+FVector* south = new FVector(-1.f, 0.f, 0.f);
+FVector* east = new FVector(0.f, 1.f, 0.f);
+FVector* west = new FVector(0.f, -1.f, 0.f);
+
+void goNorth();
+void goSouth();
+void goEast();
+void goWest();
 
 // Sets default values for this component's properties
 UEnemyMovement::UEnemyMovement()
@@ -45,6 +54,7 @@ void UEnemyMovement::TickComponent(float DeltaTime, ELevelTick TickType, FActorC
 
 	// ...
 	Move();
+	UE_LOG(LogTemp, Warning, TEXT("HI"));
 }
 
 void UEnemyMovement::Move()
@@ -73,7 +83,7 @@ void UEnemyMovement::Move()
 			dir = West;
 			timer = GetWorld()->TimeSeconds;
 		case West:
-			dir = North();
+			dir = North;
 			timer = GetWorld()->TimeSeconds;
 
 		}
@@ -81,18 +91,18 @@ void UEnemyMovement::Move()
 }
 
 void goNorth() {
-	player->SetActorLocation(FVector(.2f, 0.f, 0.f));
+	player->SetActorLocation(player->GetActorLocation() + *north);
 }
 
 void goEast() {
-	player->SetActorLocation(FVector(0.f, .2f, 0.f));
+	player->SetActorLocation(player->GetActorLocation() + *east);
 }
 
 void goSouth() {
-	player->SetActorLocation(FVector(-.2f, 0.f, 0.f));
+	player->SetActorLocation(player->GetActorLocation() + *south);
 }
 
 void goWest(){
-	player->SetActorLocation(FVector(0.f, -.2f, 0.f));
+	player->SetActorLocation(player->GetActorLocation() + *west);
 }
 
