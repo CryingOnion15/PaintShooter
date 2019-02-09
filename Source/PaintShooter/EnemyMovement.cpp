@@ -2,6 +2,7 @@
 
 #include "EnemyMovement.h"
 #include "Engine/World.h"
+#include "GameFramework/Actor.h"
 
 enum Direction {
 	North,
@@ -11,6 +12,7 @@ enum Direction {
 };
 
 Direction dir;
+AActor* player;
 
 // Sets default values for this component's properties
 UEnemyMovement::UEnemyMovement()
@@ -30,7 +32,7 @@ void UEnemyMovement::BeginPlay()
 
 	// ...
 	timer = GetWorld()->TimeSeconds;
-	dir = Direction.North;
+	dir = North;
 
 	
 }
@@ -47,7 +49,32 @@ void UEnemyMovement::TickComponent(float DeltaTime, ELevelTick TickType, FActorC
 void UEnemyMovement::Move()
 {
 	if (timer + 5 > GetWorld()->TimeSeconds) {
-
+		switch (dir) {
+		case North:
+			goNorth();
+		case East:
+			goEast();
+		case South:
+			goSouth();
+		case West:
+			goWest();
+		}
 	}
+}
+
+void goNorth() {
+	player->SetActorLocation(FVector(.2f, 0.f, 0.f));
+}
+
+void goEast() {
+	player->SetActorLocation(FVector(0.f, .2f, 0.f));
+}
+
+void goSouth() {
+	player->SetActorLocation(FVector(-.2f, 0.f, 0.f));
+}
+
+void goWest(){
+	player->SetActorLocation(FVector(0.f, -.2f, 0.f));
 }
 
