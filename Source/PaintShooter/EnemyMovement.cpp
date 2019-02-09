@@ -44,6 +44,7 @@ void UEnemyMovement::TickComponent(float DeltaTime, ELevelTick TickType, FActorC
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// ...
+	Move();
 }
 
 void UEnemyMovement::Move()
@@ -58,6 +59,23 @@ void UEnemyMovement::Move()
 			goSouth();
 		case West:
 			goWest();
+		}
+	}
+	else {
+		switch (dir) {
+		case North:
+			dir = East;
+			timer = GetWorld()->TimeSeconds;
+		case East:
+			dir = South;
+			timer = GetWorld()->TimeSeconds;
+		case South:
+			dir = West;
+			timer = GetWorld()->TimeSeconds;
+		case West:
+			dir = North();
+			timer = GetWorld()->TimeSeconds;
+
 		}
 	}
 }
