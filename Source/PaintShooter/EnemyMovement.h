@@ -15,7 +15,9 @@ class PAINTSHOOTER_API UEnemyMovement : public UActorComponent
 public:	
 	// Sets default values for this component's properties
 	UEnemyMovement();
-	void Move();
+
+	//UFUNCTION(BlueprintCallable, Category = "Enemy")
+	//void Move();
 
 protected:
 	// Called when the game starts

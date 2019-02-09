@@ -53,12 +53,13 @@ void UEnemyMovement::TickComponent(float DeltaTime, ELevelTick TickType, FActorC
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// ...
-	Move();
-	UE_LOG(LogTemp, Warning, TEXT("HI"));
+	//Move();
+	//UE_LOG(LogTemp, Warning, TEXT("HI"))
 }
 
-void UEnemyMovement::Move()
+/*void UEnemyMovement::Move()
 {
+	//UE_LOG(LogTemp,Warning, TEXT("hello"))
 	if (timer + 5 > GetWorld()->TimeSeconds) {
 		switch (dir) {
 		case North:
@@ -88,10 +89,10 @@ void UEnemyMovement::Move()
 
 		}
 	}
-}
+}*/
 
-void goNorth() {
-	player->SetActorLocation(player->GetActorLocation() + *north);
+/*void goNorth() {
+	player->;
 }
 
 void goEast() {
@@ -104,5 +105,5 @@ void goSouth() {
 
 void goWest(){
 	player->SetActorLocation(player->GetActorLocation() + *west);
-}
+}*/
 
